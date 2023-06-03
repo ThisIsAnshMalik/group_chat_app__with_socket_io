@@ -11,7 +11,24 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Center(child: Text("Enter Your Name")),
+                      content: TextFormField(),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel")),
+                        TextButton(onPressed: () {}, child: const Text("Enter"))
+                      ],
+                    );
+                  });
+            },
             child: const Text(
               "Start Group Chat",
               style: TextStyle(
