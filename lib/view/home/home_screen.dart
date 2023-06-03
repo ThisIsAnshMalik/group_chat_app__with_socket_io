@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group_chat_app__with_socket_io/view/group_chat/group_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,7 +25,14 @@ class HomeScreen extends StatelessWidget {
                               Navigator.pop(context);
                             },
                             child: const Text("Cancel")),
-                        TextButton(onPressed: () {}, child: const Text("Enter"))
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (_) {
+                                return const GroupScreen();
+                              }));
+                            },
+                            child: const Text("Enter"))
                       ],
                     );
                   });
