@@ -10,8 +10,15 @@ class HomeScreen extends StatelessWidget {
         title: const Text("Group Chat App"),
       ),
       body: Center(
-        child:
-            TextButton(onPressed: () {}, child: const Text("Start Group Chat")),
+        child: TextButton(
+            onPressed: () {},
+            child: const Text(
+              "Start Group Chat",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
+            )),
       ),
     );
   }
