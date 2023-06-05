@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:group_chat_app__with_socket_io/view/group_chat/group_screen.dart';
+import 'package:group_chat_app__with_socket_io/view_model/home.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+  final _nameKey = GlobalKey<FormState>();
+  final homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,18 @@ class HomeScreen extends StatelessWidget {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: const Center(child: Text("Enter Your Name")),
-                      content: TextFormField(),
+                      content: Form(
+                        key: _nameKey,
+                        child: TextFormField(
+                          controller: homeController.userNameController,
+                          validator: (value) {
+                            if (value!.isEmpty || value == "") {
+                              return "Please Enter A Name";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
                       actions: [
                         TextButton(
                             onPressed: () {
@@ -27,10 +43,13 @@ class HomeScreen extends StatelessWidget {
                             child: const Text("Cancel")),
                         TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (_) {
-                                return const GroupScreen();
-                              }));
+                              if (_nameKey.currentState!.validate()) {
+                                Get.to(() => GroupScreen(
+                                      name: homeController
+                                          .userNameController.text
+                                          .toString(),
+                                    ));
+                              }
                             },
                             child: const Text("Enter"))
                       ],
