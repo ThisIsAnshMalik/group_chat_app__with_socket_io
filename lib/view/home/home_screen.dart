@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:group_chat_app__with_socket_io/view/group_chat/group_screen.dart';
 import 'package:group_chat_app__with_socket_io/view_model/home.dart';
 
